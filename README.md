@@ -47,8 +47,8 @@ output:
 pwm:
 ----
 
-void fadePwm(thing, to, speed)
-void setPwm(thing, to)
+    void fadePwm(thing, to, speed)
+    void setPwm(thing, to)
 
     to: Sets the duty cycle.
           0 = 100% off
@@ -59,25 +59,25 @@ void setPwm(thing, to)
 servo:
 ------
 
-int  getServoPos(thing)
-void moveServo(thing, to)
-void restServo(thing)
-void restServos()
-bool servoStopped(thing)
-bool servosStopped()
-void stopServo(thing)
-void stopServos()
-void waitForServo(thing)
-void waitForServos()
+    int  getServoPos(thing)
+    void moveServo(thing, to)
+    void restServo(thing)
+    void restServos()
+    bool servoStopped(thing)
+    bool servosStopped()
+    void stopServo(thing)
+    void stopServos()
+    void waitForServo(thing)
+    void waitForServos()
 
     to: This is the angle of the servo horn, in degrees, between 0 to 180.
 
 sonar:
 ------
 
-int  readSonar(thing, [numOfScans])
-void setSonarRange(thing, maxDist)
-bool sonarSeesSomething(thing, [numOfScans])
+    int  readSonar(thing, [numOfScans])
+    void setSonarRange(thing, maxDist)
+    bool sonarSeesSomething(thing, [numOfScans])
 
     numOfScans: defaults to 3.
     Accuracy is improved by taking multiple readings and averaging them out.
