@@ -48,7 +48,6 @@ pwm:
 ----
 
 void fadePwm(thing, to, speed)
-
 void setPwm(thing, to)
 
     to: Sets the duty cycle.
