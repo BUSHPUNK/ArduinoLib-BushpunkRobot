@@ -4,7 +4,7 @@ Bushpunk Robot Library
 General Methods
 ---------------
 
-thing addThingy("thingy", pinNum, [pin2Num])
+  thing addThingy("thingy", pinNum, [pin2Num])
 
     thingy:  "analogInput", "buzzer", "input", "output", "pwm", "servo" or "sonar".
     pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
@@ -13,7 +13,7 @@ thing addThingy("thingy", pinNum, [pin2Num])
 analogInput:
 ------------
 
-int readValue(thing, [from], [to])
+  int readValue(thing, [from], [to])
 
     from: Defaults to 0.
     to:   Defaults to 1023.
@@ -22,7 +22,7 @@ int readValue(thing, [from], [to])
 buzzer:
 -------
 
-void playBuzzer(thing, duration, times)
+  void playBuzzer(thing, duration, times)
 
     duration: Is the length of the buzz in milliseconds (50% on then 50% off).
     times:    Refers to how many buzzes to play in a row.
@@ -30,8 +30,8 @@ void playBuzzer(thing, duration, times)
 input:
 ------
 
-bool isOn(thing, [millisecs])
-bool isOff(thing, [millisecs])
+  bool isOn(thing, [millisecs])
+  bool isOff(thing, [millisecs])
 
     [millisecs] defaults to 0.
     This parameter is useful for dealing with switch bounce, and can be used to
@@ -41,8 +41,8 @@ bool isOff(thing, [millisecs])
 output:
 -------
 
-void turnOn(thing)
-void turnOff(thing)
+  void turnOn(thing)
+  void turnOff(thing)
 
 pwm:
 ----
