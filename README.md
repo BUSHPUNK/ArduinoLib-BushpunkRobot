@@ -42,7 +42,6 @@ output:
 -------
 
 void turnOn(thing)
-
 void turnOff(thing)
 
 pwm:
