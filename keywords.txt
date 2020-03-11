@@ -1,0 +1,43 @@
+###################################
+# Syntax Coloring Map For Bushpunk
+###################################
+
+###################################
+# Datatypes (KEYWORD1)
+###################################
+
+BushpunkRobot		KEYWORD1
+
+###################################
+# Methods (KEYWORD2)
+###################################
+
+addThingy		KEYWORD2
+fadePwm			KEYWORD2
+getServoPos		KEYWORD2
+isOff			KEYWORD2
+isOn			KEYWORD2
+playBuzzer		KEYWORD2
+moveServo		KEYWORD2
+readSonar		KEYWORD2
+readValue		KEYWORD2
+repeat			KEYWORD2
+restServo		KEYWORD2
+restServos		KEYWORD2
+servoStopped		KEYWORD2
+servosStopped		KEYWORD2
+setPwm			KEYWORD2
+setServoSpeed		KEYWORD2
+setSonarRange		KEYWORD2
+sonarSeeSomething	KEYWORD2
+stopServo		KEYWORD2
+stopServos		KEYWORD2
+turnOff			KEYWORD2
+turnOn			KEYWORD2
+waitForServo		KEYWORD2
+waitForServos		KEYWORD2
+
+###################################
+# Constants (LITERAL1)
+###################################
+
