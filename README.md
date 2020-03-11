@@ -42,12 +42,14 @@ output:
 -------
 
 void turnOn(thing)
+
 void turnOff(thing)
 
 pwm:
 ----
 
 void fadePwm(thing, to, speed)
+
 void setPwm(thing, to)
 
     to: Sets the duty cycle.
