@@ -17,7 +17,7 @@ int readValue(thing, [from], [to])
 
     from: Defaults to 0.
     to:   Defaults to 1023.
-        These parameters map the input to within the required range.
+    These parameters map the input value to be within the required range.
 
 buzzer:
 -------
@@ -34,9 +34,9 @@ bool isOn(thing, [millisecs])
 bool isOff(thing, [millisecs])
 
     [millisecs] defaults to 0.
-        This parameter is useful for dealing with switch bounce, and can be
-        used to check that an input has been on or off for at least this length
-        of time before it will return as true.
+    This parameter is useful for dealing with switch bounce, and can be used to
+    check that an input has been on or off for at least this length of time
+    before it will return as true.
 
 output:
 -------
@@ -80,7 +80,7 @@ void setSonarRange(thing, maxDist)
 bool sonarSeesSomething(thing, [numOfScans])
 
     numOfScans: defaults to 3.
-        Accuracy is improved by making multiple scans and averaging them out.
+    Accuracy is improved by taking multiple readings and averaging them out.
     maxDist: defaults to 500.
-        This is the maximum distance (in CMs) that can be detected.
+    This is the maximum distance, in CMs, that will be detected.
 
