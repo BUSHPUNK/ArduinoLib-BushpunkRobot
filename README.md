@@ -60,6 +60,7 @@ digitalInput:
 bool isOn(thing)
 bool isOff(thing)
 ```
+
 output:
 -------
 ```cpp
