@@ -30,15 +30,14 @@ thing addThingy("thingy", pinNum, [pin2Num])
     thingy:  "analogInput", "buzzer", "digitlInput", "output", "pwm", "servo", "sonar" or "switch".
     pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
     pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
-    Returns a pointer to a "thing" object.
+    Returns: A pointer to a "thing" object.
 
 ```C++
 repeat(n) {
     ...
 }
 ```
-
-    Run the code inside the { } n x times.
+Run the code inside the { } n x times.
 
 analogInput:
 ------------
