@@ -45,11 +45,11 @@ General Methods
 ```cpp
 thing addThingy("thingy", pinNum, [pin2Num])
 ```
-thingy:  "analogIn", "buzzer", "digitalIn", "digitalOut", "pwm", "servo", "sonar" or "switch".
-
-pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
-  pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
-  Returns: A pointer to a "thing" object.
+Connects a "thingy" to the robot and returns a pointer to it.
+    thingy:  "analogIn", "buzzer", "digitalIn", "digitalOut", "pwm", "servo", "sonar" or "switch".
+    pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
+    pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
+    Returns: A pointer to a "thing" object.
 
 ```cpp
 repeat(n) {
