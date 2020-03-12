@@ -163,7 +163,7 @@ bool switchIsOn(thing, [millisecs])
 ```cpp
 bool switchIsOff(thing, [millisecs])
 ```
-    [millisecs] defaults to 0. This parameter is useful for dealing with switch bounce, and can be used to check that an input has been on/off for at least this length of time before it will return as true.
-    A "switch" is designed to monitor a pin that is connected with a pull-up resistor to 5V (HIGH), and where turning the switch "on" connects the pin to ground (LOW). It returns TRUE is the switch is open and FALSE if the switch is closed.
-    Inputs are processed in real time and the time they become .......
+    [millisecs] defaults to 0. This is useful for dealing with switch bounce, and can be used to check that a switch had been on/off for at least [millisecs] in time.
+    A "switch" monitors a pin that is connected with a pull-up resistor (INPUT_PULLUP).
+    It returns TRUE when the switch is closed (connected to Gnd) and FALSE when the switch is open (5V via pull-up resister).
 
