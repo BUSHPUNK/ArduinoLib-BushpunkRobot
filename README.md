@@ -22,17 +22,15 @@ Thingy's can be any of the following:
 
 General Methods
 ---------------
-
-```C++
+```cpp
 thing addThingy("thingy", pinNum, [pin2Num])
 ```
+thingy:  "analogInput", "buzzer", "digitlInput", "output", "pwm", "servo", "sonar" or "switch".
+pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
+pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
+Returns: A pointer to a "thing" object.
 
-    thingy:  "analogInput", "buzzer", "digitlInput", "output", "pwm", "servo", "sonar" or "switch".
-    pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
-    pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
-    Returns: A pointer to a "thing" object.
-
-```C++
+```cpp
 repeat(n) {
     ...
 }
@@ -41,12 +39,12 @@ Run the code inside the { } n x times.
 
 analogInput:
 ------------
-
-    int readValue(thing, [from], [to])
-
-    from: Is optional, it defaults to 0.
-    to:   Is optional, it defaults to 1023.
-    These parameters map the input value (0 - 1023) to be within the requested range (from - to).
+```cpp
+int readValue(thing, [from], [to])
+```
+from: Is optional, it defaults to 0.
+to:   Is optional, it defaults to 1023.
+These parameters map the input value (0 - 1023) to be within the requested range (from - to).
 
 buzzer:
 -------
