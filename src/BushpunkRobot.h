@@ -27,6 +27,7 @@ const uint8_t OUTPUTS_MAX		= 12;
 const uint8_t PWMS_MAX			= 12;
 const uint8_t SERVOS_MAX		= 12;
 const uint8_t SONARS_MAX		= 12;
+const uint8_t SWITCHES_MAX		= 12;
 const uint8_t TCNT2_VAL			= 255;
 
 
@@ -50,12 +51,12 @@ class BushpunkRobot {
 		void		turnOn(thingy thing);
 
 		// pwm methods...
-		void		fadePwm(thingy thing, uint8_t to, uint8_t speed = 5);
+		void		fadePwm(thingy thing, uint8_t to, uint8_t speed=5);
 		void		setPwm(thingy thing, uint8_t to);
 
 		// servo methods...
 		uint16_t	getServoPos(thingy thing);
-		void		moveServo(thingy thing, uint8_t to);
+		void		moveServo(thingy thing, uint8_t to, uint8_t speed=0);
 		void		restServo(thingy thing);
 		void		restServos();
 		bool		servoStopped(thingy thing);

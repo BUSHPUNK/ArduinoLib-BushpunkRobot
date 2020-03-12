@@ -11,14 +11,15 @@
 
 #include "BushpunkRobot.h"
 
-uint8_t	_analogInputs[ANALOGINPUTS_MAX];
-uint8_t	 _buzzers[BUZZERS_MAX];
-uint8_t	_inputs[INPUTS_MAX];
-uint8_t	_outputs[OUTPUTS_MAX];
-volatile uint8_t	_pwms[PWMS_MAX][4];			// [0]=pinNum, [1]=brightness, [2]=to, [3]=speed
-volatile uint8_t	_servoSpecs[SERVOS_MAX][4];	// [0]=pinNum, [1]speed, [2]=pos, [3]=dest
-volatile uint16_t	_sonars[SONARS_MAX][3];		// [0]=triggerPin, [1]=echoPin, [3]=maxDistance
-volatile uint32_t	_switches[INPUTS_MAX][2];	// [0]=pinNum, [1]=1st-On-time
+volatile uint8_t  _pwms[PWMS_MAX][4];			// [0]=pinNum, [1]=brightness, [2]=to, [3]=speed
+volatile uint8_t  _servoSpecs[SERVOS_MAX][4];	// [0]=pinNum, [1]speed, [2]=pos, [3]=dest
+volatile uint32_t _switches[INPUTS_MAX][2];		// [0]=pinNum, [1]=1st-On-time
+
+uint8_t  _analogInputs[ANALOGINPUTS_MAX];
+uint8_t  _buzzers[BUZZERS_MAX];
+uint8_t  _inputs[INPUTS_MAX];
+uint8_t  _outputs[OUTPUTS_MAX];
+uint16_t _sonars[SONARS_MAX][3];				// [0]=triggerPin, [1]=echoPin, [3]=maxDistance
 
 uint8_t	_numOfAnalogInputs = 0;
 uint8_t	_numOfBuzzers = 0;
@@ -155,11 +156,11 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 			result = _numOfSonars++;
 		}
 	} else if (strcmp(component, "switch") == 0) {
-		if (_numOfInputs < INPUTS_MAX) {
-			_switches[_numOfInputs][0] = pinNum;
-			_switches[_numOfInputs][1] = 0;
+		if (_numOfSwitches < SWITCHES_MAX) {
+			_switches[_numOfSwitches][0] = pinNum;
+			_switches[_numOfSwitches][1] = 0;
 			pinMode(pinNum, INPUT_PULLUP);
-			result = _numOfInputs++;
+			result = _numOfSwitches++;
 		}
 	}
 	return result;
@@ -231,7 +232,9 @@ uint16_t BushpunkRobot::getServoPos(thingy thing) {
 	return _servoSpecs[thing][2];
 }
 
-void BushpunkRobot::moveServo(thingy thing, uint8_t to) {
+void BushpunkRobot::moveServo(thingy thing, uint8_t to, uint8_t speed) {
+	if (speed != 0)
+		setServoSpeed(thing, speed);
 	if (_servos[thing].attached() == false)
 		_servos[thing].attach(_servoSpecs[thing][0]);
 	_servoSpecs[thing][3] = to;
