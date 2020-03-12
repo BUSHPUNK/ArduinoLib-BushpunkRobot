@@ -52,9 +52,7 @@ thing addThingy("thingy", pinNum, [pin2Num])
 
 ```cpp
 repeat(n) {
-    code();
-    code();
-    andMoreCode();
+    //code...
 }
 ```
     Runs the block of code, n x times.
