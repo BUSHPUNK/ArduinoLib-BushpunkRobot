@@ -1,4 +1,4 @@
-Bushpunk Robot - Arduino Library
+BushpunkRobot - Arduino Library
 ================================
 
 This library uses Timer 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, and other conveniences.
@@ -160,12 +160,18 @@ bool sonarSeesSomething(thing, [numOfScans])
 switch:
 ------
 ```cpp
+void waitForSwitchOff(thing, [millisecs])
+```
+```cpp
+void waitForSwitchOn(thing, [millisecs])
+```
+```cpp
 bool switchIsOn(thing, [millisecs])
 ```
 ```cpp
 bool switchIsOff(thing, [millisecs])
 ```
-    [millisecs]: defaults to 0. This is useful for dealing with switch bounce, and can be used to check that a switch had been on/off for at least [millisecs] in time.
+    [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
     A "switch" monitors a pin that is connected with a pull-up resistor (INPUT_PULLUP).
     It returns TRUE when the switch is closed (connected to Gnd) and FALSE when the switch is open (5V via pull-up resister).
 
