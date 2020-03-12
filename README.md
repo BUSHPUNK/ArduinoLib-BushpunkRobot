@@ -20,6 +20,26 @@ Thingy's can be any of the following:
 | sonar      | Interfacing with Ultrasonic sensors |
 | switch     | Monitoring switches using pull-up resistors |
 
+The general syntax for using this libraray is:
+``cpp
+#include <BushpunkRobot.h>
+
+BushpunkRobot robot;
+thingy headServo;
+
+setup() {
+    robot.addThingy("servo", 4);
+    robot.setServoSpeed("headServo", 2);
+}
+
+main() {
+    robot.moveServo(headServo, 45);
+    robot.waitForServo(headServo);
+    robot.moveServo(headServo, 135);
+    robot.waitForServo(headServo);
+}
+```
+
 General Methods
 ---------------
 ```cpp
@@ -146,6 +166,7 @@ bool switchIsOn(thing, [millisecs])
 ```cpp
 bool switchIsOff(thing, [millisecs])
 ```
+    [millisecs] defaults to 0. This parameter is useful for dealing with switch bounce, and can be used to check that an input has been on/off for at least this length of time before it will return as true.
     A "switch" is designed to monitor pins that are connected with a pull-up resistor to 5V (HIGH), where turning the switch "on" connects the pin to ground (LOW). It returns TRUE is the switch is off/open/disconnected and FALSE if the switch is on/closed/connected.
     Inputs are processed in real time and the time they become .......
-    [millisecs] defaults to 0. This parameter is useful for dealing with switch bounce, and can be used to check that an input has been on/off for at least this length of time before it will return as true.
+
