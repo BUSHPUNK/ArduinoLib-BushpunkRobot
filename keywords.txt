@@ -32,6 +32,8 @@ setSonarRange		KEYWORD2
 sonarSeeSomething	KEYWORD2
 stopServo		KEYWORD2
 stopServos		KEYWORD2
+switchIsOff		KEYWORD2
+switchIsOn		KEYWORD2
 turnOff			KEYWORD2
 turnOn			KEYWORD2
 waitForServo		KEYWORD2
