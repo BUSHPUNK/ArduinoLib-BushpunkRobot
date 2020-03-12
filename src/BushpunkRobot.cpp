@@ -328,6 +328,14 @@ bool BushpunkRobot::sonarSeesSomething(thingy thing, uint8_t numOfScans) {
 
 // switch methods...
 
+void BushpunkRobot::waitForSwitchOff(thingy thing, uint16_t millisecs) {
+	while (switchIsOn(thing, millisecs)) {}
+}
+
+void BushpunkRobot::waitForSwitchOn(thingy thing, uint16_t millisecs) {
+	while (switchIsOff(thing, millisecs)) {}
+}
+
 bool BushpunkRobot::switchIsOff(thingy thing, uint16_t millisecs) {
 	return !switchIsOn(thing, millisecs);
 }

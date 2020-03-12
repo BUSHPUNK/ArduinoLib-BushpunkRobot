@@ -13,12 +13,10 @@
 
 #define BushpunkRobot_h
 #define thingy		uint8_t
-#define repeat(n)	for(int ijk = 0; ijk < n; ijk++)
+#define repeat(n)	for(int ii = 0; ii < n; ii++)
 
 #include <Arduino.h>
 #include <Servo.h>
-#include <string.h>
-
 
 const uint8_t ANALOGINPUTS_MAX	= 12;
 const uint8_t BUZZERS_MAX		= 12;
@@ -73,6 +71,8 @@ class BushpunkRobot {
 		bool		sonarSeesSomething(thingy thing, uint8_t numOfScans=3);
 
 		// switch methods...
+		void		waitForSwitchOff(thingy thing, uint16_t millisecs=0);
+		void		waitForSwitchOn(thingy thing, uint16_t millisecs=0);
 		bool		switchIsOff(thingy thing, uint16_t millisecs=0);
 		bool		switchIsOn(thingy thing, uint16_t millisecs=0);
 
