@@ -140,8 +140,8 @@ void waitForServo(thing)
 ```cpp
 void waitForServos()
 ```
-    to:    The angle of the servo horn, between 0 to 180.
-    speed: defaults to 3. Sets the speed of the servo, between 1 to 5. Specifying the speed in the moveServo() method changes the general default speed for that servo.
+    to:    the angle of the servo horn, between 0 to 180.
+    speed: defaults to 3. Sets the default speed of the servo, 1 to 5 (1 = slowest). Specifying the speed in the moveServo() method also changes the default speed for that servo.
 
 sonar:
 ------
@@ -165,7 +165,7 @@ bool switchIsOn(thing, [millisecs])
 ```cpp
 bool switchIsOff(thing, [millisecs])
 ```
-    [millisecs] defaults to 0. This is useful for dealing with switch bounce, and can be used to check that a switch had been on/off for at least [millisecs] in time.
+    [millisecs]: defaults to 0. This is useful for dealing with switch bounce, and can be used to check that a switch had been on/off for at least [millisecs] in time.
     A "switch" monitors a pin that is connected with a pull-up resistor (INPUT_PULLUP).
     It returns TRUE when the switch is closed (connected to Gnd) and FALSE when the switch is open (5V via pull-up resister).
 
