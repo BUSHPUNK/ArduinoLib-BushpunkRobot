@@ -11,22 +11,24 @@
 
 #include "BushpunkRobot.h"
 
-uint8_t  _analogInputs[ANALOGINPUTS_MAX];
-uint8_t  _buzzers[BUZZERS_MAX];
-volatile uint32_t _inputs[INPUTS_MAX][2];		// [0]=pinNum, [1]=1st-On-time
-uint8_t  _outputs[OUTPUTS_MAX];
-volatile uint8_t  _pwms[PWMS_MAX][4];			// [0]=pinNum, [1]=brightness, [2]=to, [3]=speed
-volatile uint8_t  _servoSpecs[SERVOS_MAX][4];	// [0]=pinNum, [1]speed, [2]=pos, [3]=dest
-uint16_t _sonars[SONARS_MAX][3];				// [0]=triggerPin, [1]=echoPin, [3]=maxDistance
+uint8_t	_analogInputs[ANALOGINPUTS_MAX];
+uint8_t	 _buzzers[BUZZERS_MAX];
+uint8_t	_inputs[INPUTS_MAX];
+uint8_t	_outputs[OUTPUTS_MAX];
+volatile uint8_t	_pwms[PWMS_MAX][4];			// [0]=pinNum, [1]=brightness, [2]=to, [3]=speed
+volatile uint8_t	_servoSpecs[SERVOS_MAX][4];	// [0]=pinNum, [1]speed, [2]=pos, [3]=dest
+volatile uint16_t	_sonars[SONARS_MAX][3];		// [0]=triggerPin, [1]=echoPin, [3]=maxDistance
+volatile uint32_t	_switches[INPUTS_MAX][2];	// [0]=pinNum, [1]=1st-On-time
 
-uint8_t  _numOfAnalogInputs = 0;
-uint8_t  _numOfBuzzers = 0;
-uint8_t  _numOfInputs = 0;
-uint8_t  _numOfOutputs = 0;
-uint8_t  _numOfPwms = 0;
-uint8_t  _numOfServos = 0;
-uint8_t  _numOfSonars = 0;
-Servo    _servos[SERVOS_MAX];
+uint8_t	_numOfAnalogInputs = 0;
+uint8_t	_numOfBuzzers = 0;
+uint8_t	_numOfInputs = 0;
+uint8_t	_numOfOutputs = 0;
+uint8_t	_numOfPwms = 0;
+uint8_t	_numOfServos = 0;
+uint8_t	_numOfSonars = 0;
+uint8_t	_numOfSwitches = 0;
+Servo	_servos[SERVOS_MAX];
 
 void _isrPwmFade() {
 	uint8_t from, to, speed, inc, newVal;
@@ -66,11 +68,11 @@ void _isrServoMove() {
 }
 
 void _isrCheckEvents() {
-	for (uint8_t i = 0; i < _numOfInputs; i++) {
-		if (digitalRead(_inputs[i][0]) == LOW) {
-			if (_inputs[i][1] == 0) _inputs[i][1] = millis();
+	for (uint8_t i = 0; i < _numOfSwitches; i++) {
+		if (digitalRead(_switches[i][0]) == LOW) {
+			if (_switches[i][1] == 0) _switches[i][1] = millis();
 		} else {
-			_inputs[i][1] = 0;
+			_switches[i][1] = 0;
 		}
 	}
 }
@@ -96,7 +98,7 @@ BushpunkRobot::BushpunkRobot() {
 
 thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t pin2Num) {
 	int8_t result = -1;
-	if (strcmp(component, "analogInput") == 0) {
+	if (strcmp(component, "analogIn") == 0) {
 		if (_numOfAnalogInputs < ANALOGINPUTS_MAX) {
 			_analogInputs[_numOfAnalogInputs] = pinNum;
 			result = _numOfAnalogInputs++;
@@ -109,14 +111,13 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 			pinMode(pinNum, OUTPUT);
 			result = _numOfBuzzers++;
 		}
-	} else if (strcmp(component, "input") == 0) {
+	} else if (strcmp(component, "digitalIn") == 0) {
 		if (_numOfInputs < INPUTS_MAX) {
-			_inputs[_numOfInputs][0] = pinNum;
-			_inputs[_numOfInputs][1] = 0;
-			pinMode(pinNum, INPUT_PULLUP);
+			_inputs[_numOfInputs] = pinNum;
+			pinMode(pinNum, INPUT);
 			result = _numOfInputs++;
 		}
-	} else if (strcmp(component, "output") == 0) {
+	} else if (strcmp(component, "digitalOut") == 0) {
 		if (_numOfOutputs < OUTPUTS_MAX) {
 			_outputs[_numOfOutputs] = pinNum;
 			digitalWrite(pinNum, LOW);
@@ -153,12 +154,19 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 			digitalWrite(pinNum, LOW);
 			result = _numOfSonars++;
 		}
+	} else if (strcmp(component, "switch") == 0) {
+		if (_numOfInputs < INPUTS_MAX) {
+			_switches[_numOfInputs][0] = pinNum;
+			_switches[_numOfInputs][1] = 0;
+			pinMode(pinNum, INPUT_PULLUP);
+			result = _numOfInputs++;
+		}
 	}
 	return result;
 }
 
 
-// AnalogInput methods...
+// AnalogIn methods...
 
 int16_t	BushpunkRobot::readValue(uint8_t thing, uint16_t from, uint16_t to) {
 	return (map(analogRead(_analogInputs[thing]), 0, 1023, from, to));
@@ -177,21 +185,21 @@ void BushpunkRobot::playBuzzer(thingy thing, uint16_t duration, uint16_t times) 
 }
 
 
-// Input methods...
+// digitalIn methods...
 
-bool BushpunkRobot::isOff(thingy thing, uint16_t millisecs) {
-	return !isOn(thing, millisecs);
+bool BushpunkRobot::isOff(thingy thing) {
+	return !isOn(thing);
 }
 
-bool BushpunkRobot::isOn(thingy thing, uint16_t millisecs) {
-	if (_inputs[thing][1] != 0 and millis() - _inputs[thing][1] >= millisecs)
+bool BushpunkRobot::isOn(thingy thing) {
+	if (digitalRead(_inputs[thing]) == HIGH)
 		return true;
 	else
 		return false;
 }
 
 
-// Output methods...
+// digitalOut methods...
 
 void BushpunkRobot::turnOff(thingy thing) {
 	digitalWrite(_outputs[thing], LOW);
@@ -312,6 +320,20 @@ bool BushpunkRobot::sonarSeesSomething(thingy thing, uint8_t numOfScans) {
 		return false;
 	else
 		return true;
+}
+
+
+// switch methods...
+
+bool BushpunkRobot::switchIsOff(thingy thing, uint16_t millisecs) {
+	return !switchIsOn(thing, millisecs);
+}
+
+bool BushpunkRobot::switchIsOn(thingy thing, uint16_t millisecs) {
+	if (_switches[thing][1] != 0 and millis() - _switches[thing][1] >= millisecs)
+		return true;
+	else
+		return false;
 }
 
 

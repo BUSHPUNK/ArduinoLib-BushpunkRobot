@@ -35,25 +35,25 @@ class BushpunkRobot {
 		BushpunkRobot();
 		thingy		addThingy(const char *component, uint8_t pinNum, uint8_t pin2Num=0);
 
-		// AnalogInput methods...
+		// analogIn methods...
 		int16_t		readValue(thingy thing, uint16_t from=0, uint16_t to=1023);
 
-		// Buzzer methods...
+		// buzzer methods...
 		void		playBuzzer(thingy thing, uint16_t duration, uint16_t times=1);
 
-		// Input methods...
-		bool		isOff(thingy thing, uint16_t millisecs=0);
-		bool		isOn(thingy thing, uint16_t millisecs=0);
+		// digitalIn methods...
+		bool		isOff(thingy thing);
+		bool		isOn(thingy thing);
 
-		// Output methods
+		// digitalOut methods
 		void		turnOff(thingy thing);
 		void		turnOn(thingy thing);
 
-		// PWM methods...
+		// pwm methods...
 		void		fadePwm(thingy thing, uint8_t to, uint8_t speed = 5);
 		void		setPwm(thingy thing, uint8_t to);
 
-		// Servo methods...
+		// servo methods...
 		uint16_t	getServoPos(thingy thing);
 		void		moveServo(thingy thing, uint8_t to);
 		void		restServo(thingy thing);
@@ -66,10 +66,14 @@ class BushpunkRobot {
 		void		waitForServo(thingy thing);
 		void		waitForServos();
 
-		// Sonar methods...
+		// sonar methods...
 		uint16_t	readSonar(thingy thing, uint8_t numOfScans=3);
 		void		setSonarRange(thingy thing, uint16_t maxDist);
 		bool		sonarSeesSomething(thingy thing, uint8_t numOfScans=3);
+
+		// switch methods...
+		bool		switchIsOff(thingy thing, uint16_t millisecs=0);
+		bool		switchIsOn(thingy thing, uint16_t millisecs=0);
 
 	private:
 		void	_timer2Setup();
