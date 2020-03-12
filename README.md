@@ -67,6 +67,8 @@ output:
 -------
 ```cpp
 void turnOn(thing)
+```
+```cpp
 void turnOff(thing)
 ```
 pwm:
@@ -81,21 +83,41 @@ void setPwm(thing, to)
           0 = 100% off
         127 = 50%/50%
         255 = 100% on
-    Speed: 1 - 5 (5 = fastest).
+    speed: The speed to change from the previously set value to this new one, 1 to 5 (5 = fastest).
 
 servo:
 ------
 ```cpp
 int  getServoPos(thing)
+```
+```cpp
 void moveServo(thing, to, [speed])
+```
+```cpp
 void restServo(thing)
+```
+```cpp
 void restServos()
+```
+```cpp
 bool servoStopped(thing)
+```
+```cpp
 bool servosStopped()
+```
+```cpp
 void setServoSpeed(thing, speed)
+```
+```cpp
 void stopServo(thing)
+```
+```cpp
 void stopServos()
+```
+```cpp
 void waitForServo(thing)
+```
+```cpp
 void waitForServos()
 ```
     to:    The angle of the servo horn, between 0 to 180.
@@ -105,7 +127,11 @@ sonar:
 ------
 ```cpp
 int  readSonar(thing, [numOfScans])
+```
+```cpp
 void setSonarRange(thing, maxDist)
+```
+```cpp
 bool sonarSeesSomething(thing, [numOfScans])
 ```
     numOfScans: defaults to 3. Accuracy is improved by taking multiple readings and averaging them out.
@@ -115,6 +141,8 @@ switch:
 ------
 ```cpp
 bool switchIsOn(thing, [millisecs])
+```
+```cpp
 bool switchIsOff(thing, [millisecs])
 ```
     A "switch" is designed to monitor pins that are connected with a pull-up resistor to 5V (HIGH), where turning the switch "on" connects the pin to ground (LOW). It returns TRUE is the switch is off/open/disconnected and FALSE if the switch is on/closed/connected.
