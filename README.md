@@ -1,7 +1,7 @@
 Bushpunk Robot Library
 ======================
 
-This library uses interrupt 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, and other conveniences.
+This library uses Timer 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, and other conveniences.
 
 It diverges from the regular Arduino coding style, providing a more natural-language style of coding based around the idea of generically adding "thingy's" to your robot, and then interacting with them in a consistent way.
 
@@ -17,8 +17,8 @@ Thingy's can be any of the following:
 | digitalOut | Controlling digital output pins |
 | pwm        | Setting/fading of signal on PWM pins |
 | servo      | Control and monitoring of servos |
-| sonar      | Interfacing with Ultrasonic sensors |
-| switch     | Monitoring switches using pull-up resistors |
+| sonar      | Interfacing with ultrasonic sensors |
+| switch     | Monitoring switches (that are wired up using pull-up resistors) |
 
 The general syntax for using this libraray is:
 ```cpp
@@ -29,7 +29,7 @@ thingy headServo;
 
 setup() {
     robot.addThingy("servo", 4);
-    robot.setServoSpeed("headServo", 2);
+    robot.setServoSpeed(headServo, 2);
 }
 
 main() {
