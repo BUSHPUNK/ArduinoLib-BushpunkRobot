@@ -25,20 +25,20 @@ General Methods
 ```cpp
 thing addThingy("thingy", pinNum, [pin2Num])
 ```
-    thingy:  "analogInput", "buzzer", "digitlInput", "output", "pwm", "servo", "sonar" or "switch".
+    thingy:  "analogIn", "buzzer", "digitalIn", "Digitalout", "pwm", "servo", "sonar" or "switch".
     pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
     pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
     Returns: A pointer to a "thing" object.
 
 ```cpp
 repeat(n) {
-    ...
+    // code...
 }
 ```
-    Runs the code inside the { ... }, n x times.
+    Runs the block of code, n x times.
 
-analogInput:
-------------
+analogIn:
+---------
 ```cpp
 int readValue(thing, [from], [to])
 ```
@@ -54,8 +54,8 @@ void playBuzzer(thing, duration, times)
     duration: Is the length of the buzz in milliseconds (50% on then 50% off).
     times:    Refers to how many buzzes to play in a row.
 
-digitalInput:
-------------
+digitalIn:
+----------
 ```cpp
 bool isOn(thing)
 ```
@@ -63,7 +63,7 @@ bool isOn(thing)
 bool isOff(thing)
 ```
 
-output:
+digitalOut:
 -------
 ```cpp
 void turnOn(thing)
@@ -71,6 +71,7 @@ void turnOn(thing)
 ```cpp
 void turnOff(thing)
 ```
+
 pwm:
 ----
 ```cpp
