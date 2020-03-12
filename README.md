@@ -1,5 +1,5 @@
-Bushpunk Robot Library
-======================
+Bushpunk Robot - Arduino Library
+================================
 
 This library uses Timer 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, and other conveniences.
 
@@ -28,8 +28,8 @@ BushpunkRobot robot;
 thingy headServo;
 
 setup() {
-    robot.addThingy("servo", 4);
-    robot.setServoSpeed(headServo, 2);
+    headServo = robot.addThingy("servo", 4);
+    robot.setServoSpeed(headServo, 1);
 }
 
 main() {
@@ -62,9 +62,9 @@ analogIn:
 ```cpp
 int readValue(thing, [from], [to])
 ```
-    from: Is optional, it defaults to 0.
-    to:   Is optional, it defaults to 1023.
-    These parameters map the input value (0 - 1023) to be within the requested range (from - to).
+    from:    Is optional, it defaults to 0.
+    to:      Is optional, it defaults to 1023.
+    Returns: The input value (0 - 1023) mapped to within the requested range (from - to).
 
 buzzer:
 -------
@@ -72,7 +72,7 @@ buzzer:
 void playBuzzer(thing, duration, times)
 ```
     duration: Is the length of the buzz in milliseconds (50% on then 50% off).
-    times:    Refers to how many buzzes to play in a row.
+    times:    Refers to how many sequential buzzes to play.
 
 digitalIn:
 ----------
@@ -100,11 +100,8 @@ void fadePwm(thing, to, speed)
 ```cpp
 void setPwm(thing, to)
 ```
-    to: Sets the duty cycle.
-          0 = 100% off
-        127 = 50%/50%
-        255 = 100% on
-    speed: The speed to change from the previously set value to this new one, 1 to 5 (5 = fastest).
+    to:    Sets the duty cycle... 0 = 100% OFF, 127 = 50%/50% (ON/OFF), 255 = 100% ON
+    speed: The speed to "fade" from the previously set value to this new one, 1 to 5 (5 = fastest).
 
 servo:
 ------
@@ -167,6 +164,6 @@ bool switchIsOn(thing, [millisecs])
 bool switchIsOff(thing, [millisecs])
 ```
     [millisecs] defaults to 0. This parameter is useful for dealing with switch bounce, and can be used to check that an input has been on/off for at least this length of time before it will return as true.
-    A "switch" is designed to monitor pins that are connected with a pull-up resistor to 5V (HIGH), where turning the switch "on" connects the pin to ground (LOW). It returns TRUE is the switch is off/open/disconnected and FALSE if the switch is on/closed/connected.
+    A "switch" is designed to monitor a pin that is connected with a pull-up resistor to 5V (HIGH), and where turning the switch "on" connects the pin to ground (LOW). It returns TRUE is the switch is open and FALSE if the switch is closed.
     Inputs are processed in real time and the time they become .......
 
