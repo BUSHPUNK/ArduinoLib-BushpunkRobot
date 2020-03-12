@@ -7,16 +7,16 @@ It also diverges from the regular Arduino coding style, providing a more natural
 
 Thingy's can be any of the following:
 
-| Thingy     | Notes |
-| ---------- | ----- |
+| Thingy     | Used For  |
+| ---------- | --------- |
 | analogIn   | Reading analogue input pins |
 | buzzer     | Interfacing with piezo buzzers |
-| digitalIn  | Monitoring of digital input pins |
-| digitalOut | Setting of digital output pins |
-| pwm        | Setting and fading of PWM pins |
+| digitalIn  | Reading digital input pins |
+| digitalOut | Controlling digital output pins |
+| pwm        | Setting/fading of signal on PWM pins |
 | servo      | Control and monitoring of servos |
- | sonar      | Interfacing with Ultrasonic sensors |
-| switch     | Interfacing with switches using pull-up resistors |
+| sonar      | Interfacing with Ultrasonic sensors |
+| switch     | Monitoring switches using pull-up resistors |
 
 General Methods
 ---------------
