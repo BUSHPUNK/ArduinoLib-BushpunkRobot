@@ -57,9 +57,11 @@ void playBuzzer(thing, duration, times)
 digitalInput:
 ------------
 ```cpp
-bool isOn(thing) ```
+bool isOn(thing)
+```
 ```cpp
-bool isOff(thing) ```
+bool isOff(thing)
+```
 
 output:
 -------
