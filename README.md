@@ -21,7 +21,7 @@ Thingy's can be any of the following:
 | switch     | Monitoring switches using pull-up resistors |
 
 The general syntax for using this libraray is:
-``cpp
+```cpp
 #include <BushpunkRobot.h>
 
 BushpunkRobot robot;
