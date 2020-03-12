@@ -1,14 +1,16 @@
 Bushpunk Robot Library
 ======================
 
-This library uses interrupt 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", and easy switch-debouncing.
+This library uses interrupt 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, and other conveniences.
 
-It also diverges from the regular Arduino coding style, providing a more natural-language style of coding based around the idea of generically adding "thingy's" to your robot, and then interacting with them in a consistent way.
+It diverges from the regular Arduino coding style, providing a more natural-language style of coding based around the idea of generically adding "thingy's" to your robot, and then interacting with them in a consistent way.
+
+It depends on the Servo library.
 
 Thingy's can be any of the following:
 
-| Thingy     | Used For  |
-| ---------- | --------- |
+| Thingy     | Used For |
+| ---------- | -------- |
 | analogIn   | Reading analogue input pins |
 | buzzer     | Interfacing with piezo buzzers |
 | digitalIn  | Reading digital input pins |
@@ -21,16 +23,20 @@ Thingy's can be any of the following:
 General Methods
 ---------------
 
-    thing addThingy("thingy", pinNum, [pin2Num])
+```C++
+thing addThingy("thingy", pinNum, [pin2Num])
+```
 
     thingy:  "analogInput", "buzzer", "digitlInput", "output", "pwm", "servo", "sonar" or "switch".
     pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
     pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
     Returns a pointer to a "thing" object.
 
-    repeat(n) {
-        ...
-    }
+```C++
+repeat(n) {
+    ...
+}
+```
 
     Run the code inside the { } n x times.
 
