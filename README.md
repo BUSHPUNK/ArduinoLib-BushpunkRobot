@@ -71,8 +71,10 @@ void turnOff(thing)
 ```
 pwm:
 ----
-```
+```cpp
 void fadePwm(thing, to, speed)
+```
+```cpp
 void setPwm(thing, to)
 ```
     to: Sets the duty cycle.
