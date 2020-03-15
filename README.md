@@ -47,23 +47,25 @@ thing addThingy("thingy", pinNum, [pin2Num])
 ```
 Connects a "thingy" to the robot and returns a pointer to it.
 
-    thingy:  "analogIn", "buzzer", "digitalIn", "digitalOut", "pwm", "servo", "sonar" or "switch".
-    pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
-    pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
-    Returns: A pointer to a "thing" object.
+  * thingy:  "analogIn", "buzzer", "digitalIn", "digitalOut", "pwm", "servo", "sonar" or "switch".
+  * pinNum:  The pin number this thingy is connected to (0 - 13 or A0 - A7).
+  * pin2Num: This is only used for sonars: pinNum=Trig, pin2Num=Echo.
+  * Returns: A pointer to a "thing" object.
 
 ```cpp
 repeat(n) {
     //code...
 }
 ```
-    Runs the block of code, n x times.
+Runs the block of code, n x times.
 
 analogIn:
 ---------
 ```cpp
 int readValue(thing, [from], [to])
 ```
+Reads the value of an analogue pin, and optionally returns the value mapped to within the range given.
+
     from:    Is optional, it defaults to 0.
     to:      Is optional, it defaults to 1023.
     Returns: The input value (0 - 1023) mapped to within the requested range (from - to).
