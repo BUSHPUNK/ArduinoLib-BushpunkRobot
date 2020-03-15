@@ -176,7 +176,7 @@ int16_t	BushpunkRobot::readValue(uint8_t thing, uint16_t from, uint16_t to) {
 
 // Buzzer methods...
 
-void BushpunkRobot::playBuzzer(thingy thing, uint16_t duration, uint16_t times) {
+void BushpunkRobot::playBuzzer(thingy thing, uint16_t duration, uint8_t times) {
 	for (int i = 0; i < times; i++) {
 		digitalWrite(_buzzers[thing], HIGH);
 		delay(duration);

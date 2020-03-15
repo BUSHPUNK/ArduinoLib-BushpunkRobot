@@ -38,7 +38,7 @@ class BushpunkRobot {
 		int16_t		readValue(thingy thing, uint16_t from=0, uint16_t to=1023);
 
 		// buzzer methods...
-		void		playBuzzer(thingy thing, uint16_t duration, uint16_t times=1);
+		void		playBuzzer(thingy thing, uint16_t duration, uint8_t times=1);
 
 		// digitalIn methods...
 		bool		isOff(thingy thing);
