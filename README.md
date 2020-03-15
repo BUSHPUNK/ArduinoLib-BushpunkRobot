@@ -146,51 +146,68 @@ As above, but checks if all the servos have reached their final destination yet.
 ```cpp
 void setServoSpeed(thing, speed)
 ```
-
+Sets the default speed for this servo.
+  * speed: (1 - 5, 5 = fastest).
 ```cpp
 void stopServo(thing)
 ```
+Immediately stops the servo at whatever position it happens to be in at the time.
 ```cpp
 void stopServos()
 ```
+Immediately stops all servos at whatever positions they happen to be in at the time.
 ```cpp
 void waitForServo(thing)
 ```
+Waits for the servo to reach its destination.
 ```cpp
 void waitForServos()
 ```
-  * to:    the angle of the servo horn, between 0 to 180.
-  * speed: defaults to 3. Sets the default speed of the servo, 1 to 5 (1 = slowest). Specifying the speed in the moveServo() method also changes the default speed for that servo.
+Waits for all servos to reach their destination.
 
 sonar:
 ------
 ```cpp
 int  readSonar(thing, [numOfScans])
 ```
+Take a distance reading from the sonar (ultrasonic sensor).
+  * numOfScans: (1-255, defaults to 3). Accuracy is improved by taking multiple readings and averaging them out.
+  * Returns:    The average distance, in CMs, of any detected objects. Returns 0 if nothing is detected.
 ```cpp
 void setSonarRange(thing, maxDist)
 ```
+Sets the maximum range that it will detect look to.
+  * maxDist: (defaults to 500) This is the maximum distance, in CMs, that will be detected.
 ```cpp
 bool sonarSeesSomething(thing, [numOfScans])
 ```
-  * numOfScans: defaults to 3. Accuracy is improved by taking multiple readings and averaging them out.
-  * maxDist:    defaults to 500. This is the maximum distance, in CMs, that will be detected.
+Check if the sonar has detected anything within it's preset range.
+  * numOfScans: (1-255, defaults to 3). Accuracy is improved by taking multiple readings and averaging them out.
+  * maxDist: (defaults to 500) This is the maximum distance, in CMs, that will be detected.
 
 switch:
 ------
+These methods are for use with switches that are wired to an Arduino pin and ground, taking advantage of the Arduino's internal pull-up resistors (INPUT_PULLUP). In this scenerio, when the switch is ON, the pin is connected to ground.
 ```cpp
 void waitForSwitchOff(thing, [millisecs])
 ```
+Wait for the switch to be turned off (contacts open).
+  * [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
 ```cpp
 void waitForSwitchOn(thing, [millisecs])
 ```
-```cpp
-bool switchIsOn(thing, [millisecs])
-```
+Wait for the switch to be turned on (contacts closed, so Arduino pin is connected to ground).
+  * [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
 ```cpp
 bool switchIsOff(thing, [millisecs])
 ```
-A "switch" monitors a pin that is connected with a pull-up resistor (INPUT_PULLUP).
-It returns TRUE when the switch is closed (connected to Gnd) and FALSE when the switch is open (5V via pull-up resister).
+Checks if the switch is turned off (contacts open).
   * [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
+  * Returns: (true or false)
+```cpp
+bool switchIsOn(thing, [millisecs])
+```
+Checks if the switch is turned on (contacts closed, so Arduino pin is connected to ground).
+  * [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
+  * Returns: (true or false)
 
