@@ -25,18 +25,18 @@ The general syntax for using this libraray, is along the lines of...
 #include <BushpunkRobot.h>
 
 BushpunkRobot robot;
-thingy headServo;
+thingy tailServo;
 
 setup() {
-    headServo = robot.addThingy("servo", 4);  // Add a servo (that's been connected to pin 4) and call it headServo
-    robot.setServoSpeed(headServo, 1);        // Set headServo's default speed to 1 (slowest)
+    tailServo = robot.addThingy("servo", 4);  // Add a servo (that's been connected to pin 4) and call it tailServo
+    robot.setServoSpeed(tailServo, 1);        // Set tailServo's default speed to 1 (slowest)
 }
 
 main() {
-    robot.moveServo(headServo, 45);           // Move headServo to 45 degrees
-    robot.waitForServo(headServo);            // Wait until headServo reaches its destination (45 degrees)
-    robot.moveServo(headServo, 135);          // Move headServo to 135 degrees
-    robot.waitForServo(headServo);            // Wait until headServo reaches its destination (135 degrees)
+    robot.moveServo(tailServo, 45);           // Move tailServo to 45 degrees
+    robot.waitForServo(tailServo);            // Wait until tailServo reaches its destination (45 degrees)
+    robot.moveServo(tailServo, 135);          // Move tailServo to 135 degrees
+    robot.waitForServo(tailServo);            // Wait until tailServo reaches its destination (135 degrees)
 }
 ```
 
@@ -49,7 +49,7 @@ Connects a "thingy" to the robot and returns a pointer to it. This method does a
   * thingy:  ("analogIn", "buzzer", "digitalIn", "digitalOut", "pwm", "servo", "sonar" or "switch")
   * pinNum:  (0 - 13 or A0 - A7) The pin number this thingy is connected to.
   * pin2Num: (0 - 13 or A0 - A7) This is only used for sonars (pinNum = Trig, pin2Num = Echo).
-  * Returns: (thing) A pointer to a "thing" object.
+  * Returns: (thing) A pointer to the "thingy" that's been created.
 
 ```cpp
 repeat(n) {
@@ -86,7 +86,7 @@ bool isOn(thing)
 bool isOff(thing)
 ```
 Reads the voltage on a digital pin and returns its state - similar to digitalRead().
-  * Returns: True or False, depending on the signal connected to that pin (5V = On, Gnd = Off).
+  * Returns: (true or false) depending on the signal connected to that pin (5V = On, Gnd = Off).
 
 digitalOut:
 -------
@@ -108,7 +108,7 @@ void setPwm(thing, to)
 ```
 This is handy for setting the brightness of things like LEDs, etc.
   * to:    (0 - 255) Sets the duty cycle... 0 = 100% OFF, 127 = 50%/50% (ON/OFF), 255 = 100% ON
-  * speed: (1 -5) The speed to "fade" from the previously set value to this new one (5 = fastest).
+  * speed: (1 - 5, optional, default = 3) The speed to "fade" from the previously set value to this new one (5 = fastest).
 
 servo:
 ------
@@ -116,31 +116,37 @@ Controlling and monitoring several servos at the same time, is a large part of t
 ```cpp
 int  getServoPos(thing)
 ```
-Useful to discover the current location a moving servo, that hasn't yet reached it its destination.
+Useful to discover the current physical location a moving servo, that hasn't yet reached it its destination.
     returns: (0 - 180) The current physical position of this servo.
 ```cpp
 void moveServo(thing, to, [speed])
 ```
 Tells a servo to move to a new position.
-    to:    (0 - 180) The position, in degree, to move to.
-    speed: (1 - 5) The (new) default speed that this servo moves at (5 = fastest).
+  * to:    (0 - 180) The position, in degree, to move to.
+  * speed: (1 - 5, optional, default = 3) The (new) default speed that this servo moves at (5 = fastest).
 ```cpp
 void restServo(thing)
 ```
-Disconnects the control signal from the servo, which allows it to "rest".
+Disconnects the control signal from the servo, which allows it to "rest" (motor turned off = can be moved "by hand", and uses far less power). Using the moveServo() method will automatically reconnect the servo.
 
 ```cpp
 void restServos()
 ```
+As above, but disconnects the control signal from all of the servos.
 ```cpp
 bool servoStopped(thing)
 ```
+Useful for checking if a servo has reached its final destination yet.
+    returns: (true or false)
 ```cpp
 bool servosStopped()
 ```
+As above, but checks if all the servos have reached their final destination yet.
+    returns: (true or false)
 ```cpp
 void setServoSpeed(thing, speed)
 ```
+
 ```cpp
 void stopServo(thing)
 ```
