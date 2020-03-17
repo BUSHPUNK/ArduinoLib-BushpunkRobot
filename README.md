@@ -1,7 +1,7 @@
 BushpunkRobot - Arduino Library
 ================================
 
-This library uses Timer 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, as well as other conveniences.
+This library has been created and refined over many years, and is the basis for all of the robots, big and small, that I've developed in that time. It uses Timer 2 to provide background speed control and monitoring of servos, smooth fading between PWM "levels", easy switch-debouncing, as well as other conveniences.
 
 It diverges from the regular Arduino coding style, providing a more natural-language style of coding based around the idea of generically adding "thingy's" to your robot, and then interacting with them in a consistent way.
 
