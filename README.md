@@ -149,6 +149,11 @@ void setServoSpeed(thing, speed)
 Sets the default speed for this servo.
   * speed: (1 - 5, 5 = fastest).
 ```cpp
+void setServoSpeeds(speed)
+```
+Sets the default speed for all servos that have already been added.
+  * speed: (1 - 5, 5 = fastest).
+```cpp
 void stopServo(thing)
 ```
 Immediately stops the servo at whatever position it happens to be in at the time.
