@@ -271,6 +271,12 @@ void BushpunkRobot::setServoSpeed(thingy thing, uint8_t speed) {
 		_servoSpecs[thing][1] = speed;
 }
 
+void BushpunkRobot::setServoSpeeds(uint8_t speed) {
+	for (uint8_t i = 0; i < _numOfServos; i++) {
+		setServoSpeed(i, speed);
+	}
+}
+
 void BushpunkRobot::stopServo(thingy thing) {
 	moveServo(thing, getServoPos(thing));
 }

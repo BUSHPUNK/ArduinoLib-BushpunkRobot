@@ -60,6 +60,7 @@ class BushpunkRobot {
 		bool		servoStopped(thingy thing);
 		bool		servosStopped();
 		void		setServoSpeed(thingy thing, uint8_t speed);
+		void		setServoSpeeds(uint8_t speed);
 		void		stopServo(thingy thing);
 		void		stopServos();
 		void		waitForServo(thingy thing);
