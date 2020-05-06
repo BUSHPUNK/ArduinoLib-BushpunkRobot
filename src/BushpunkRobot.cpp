@@ -170,7 +170,7 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 
 // AnalogIn methods...
 
-int16_t	BushpunkRobot::readValue(uint8_t thing, uint16_t from, uint16_t to) {
+int32_t BushpunkRobot::readValue(uint8_t thing, uint16_t from, uint16_t to) {
 	return map(analogRead(_analogInputs[thing]), 0, 1023, from, to);
 }
 

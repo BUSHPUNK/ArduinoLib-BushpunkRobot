@@ -35,7 +35,7 @@ class BushpunkRobot {
 		thingy		addThingy(const char *component, uint8_t pinNum, uint8_t pin2Num=0);
 
 		// analogIn methods...
-		int16_t		readValue(thingy thing, uint16_t from=0, uint16_t to=1023);
+		int32_t 	readValue(thingy thing, uint16_t from=0, uint16_t to=1023);
 
 		// buzzer methods...
 		void		playBuzzer(thingy thing, uint16_t duration, uint8_t times=1);
