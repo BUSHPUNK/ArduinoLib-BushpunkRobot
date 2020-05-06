@@ -102,6 +102,7 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 	if (strcmp(component, "analogIn") == 0) {
 		if (_numOfAnalogInputs < ANALOGINPUTS_MAX) {
 			_analogInputs[_numOfAnalogInputs] = pinNum;
+			pinMode(pinNum, INPUT);
 			result = _numOfAnalogInputs++;
 		}
 	}
@@ -115,7 +116,7 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 	} else if (strcmp(component, "digitalIn") == 0) {
 		if (_numOfInputs < INPUTS_MAX) {
 			_inputs[_numOfInputs] = pinNum;
-			pinMode(pinNum, INPUT);
+			pinMode(pinNum, INPUT_PULLUP);
 			result = _numOfInputs++;
 		}
 	} else if (strcmp(component, "digitalOut") == 0) {
@@ -170,7 +171,7 @@ thingy BushpunkRobot::addThingy(const char *component, uint8_t pinNum, uint8_t p
 // AnalogIn methods...
 
 int16_t	BushpunkRobot::readValue(uint8_t thing, uint16_t from, uint16_t to) {
-	return (map(analogRead(_analogInputs[thing]), 0, 1023, from, to));
+	return map(analogRead(_analogInputs[thing]), 0, 1023, from, to);
 }
 
 
