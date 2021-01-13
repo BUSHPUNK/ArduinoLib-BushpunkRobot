@@ -3,10 +3,10 @@
  *
  *	Darryl Bartlett (BUSHPUNK), 4th November 2016
  *	Email: bushpunker@gmail.com
- *	License: Copyright 2016 - 2020, All rights reserved
+ *	License: Copyright 2016 - 2021, All rights reserved
  *
- *  Updated: 13/03/2020
- *  Version: 2.0
+ *	Updated: 14/01/2021
+ *	Version: 2.1
  */
 
 #include "BushpunkRobot.h"
@@ -352,6 +352,31 @@ bool BushpunkRobot::switchIsOn(thingy thing, uint16_t millisecs) {
 		return true;
 	else
 		return false;
+}
+
+
+// time methods...
+
+bool BushpunkRobot::isOverMillisAgo(uint32_t timeStamp, uint32_t millisecs) {
+	if (millis() - timeStamp >= millisecs)
+		return true;
+	else
+		return false;
+}
+
+bool BushpunkRobot::isOverSecsAgo(uint32_t timeStamp, uint32_t secs) {
+	return isOverMillisAgo(timeStamp, secs*1000);
+}
+
+bool BushpunkRobot::isUnderMillisAgo(uint32_t timeStamp, uint32_t millisecs) {
+	if (millis() - timeStamp <= millisecs)
+		return true;
+	else
+		return false;
+}
+
+bool BushpunkRobot::isUnderSecsAgo(uint32_t timeStamp, uint32_t secs) {
+	return isUnderMillisAgo(timeStamp, secs*1000);
 }
 
 
