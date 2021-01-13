@@ -216,3 +216,24 @@ Checks if the switch is turned on (contacts closed, so Arduino pin is connected 
   * [millisecs]: defaults to 0. Requires that a switch had been constantly on (or off) for at least [millisecs], which is useful for dealing with switch bounce.
   * Returns: (true or false)
 
+
+time:
+------
+These methods make it easy to check if a timestamp is more or less than a certain time ago.
+```cpp
+bool isOverMillisAgo(timeStamp, millisecs)
+```
+Returns TRUE if timeStamp is more than, or equal to, millisecs before now.
+```cpp
+bool isUnderMillisAgo(timeStamp, millisecs)
+```
+Returns TRUE if timeStamp is less than, or equal to, secs before now.
+```cpp
+bool isOverSecsAgo(timeStamp, secs)
+```
+Returns TRUE if timeStamp is more than, or equal to, secs before now.
+```cpp
+bool isUnderSecsAgo(timeStamp, millisecs)
+```
+Returns TRUE if timeStamp is less than, or equal to, secs before now.
+
