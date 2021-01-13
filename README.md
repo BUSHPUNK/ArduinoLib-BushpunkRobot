@@ -217,8 +217,8 @@ Checks if the switch is turned on (contacts closed, so Arduino pin is connected 
   * Returns: (true or false)
 
 
-time:
-------
+time-comparison:
+---------------
 These methods make it easy to check if a timestamp is more or less than a certain time ago.
 ```cpp
 bool isOverMillisAgo(timeStamp, millisecs)
